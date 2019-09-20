@@ -1,0 +1,576 @@
+<!doctype html>
+<html>
+<head>
+    <title>Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font: 100%/1.4 "Helvetica Neue", sans-serif;
+            min-width:768px !important;
+            background: rgb(245, 249, 250)!important;
+        }
+        .form {
+            left: 0;
+            /* margin: auto; */
+            right: 0;
+            padding: 3px;
+            position: absolute;
+            bottom: 0;
+            /* width: 94%; */
+            background-color: #00b6f0;
+            cursor: text;
+        }
+        form input {
+            border: none;
+            width: 80%;
+            height: 44px;
+
+        }
+        form button {
+            background: #00b6f0;
+            border: none;
+            padding: 10px;
+            width: 20%;
+            float: right;
+            overflow: hidden;
+        }
+
+        #messages {
+            list-style-type: none;
+
+            padding: 0;
+            margin-bottom: 20%;
+
+        }
+        #messages li {
+            padding: 5px 10px;
+
+        }
+        #messages li:nth-child(odd) {
+            background: rgba(0, 73, 100, 0.16);
+
+        }
+        .chat{
+            position: relative;
+            width: 20%;
+            overflow:hidden;
+            height: 8rem !important;
+            margin-top: 8rem !important;
+            /* margin-bottom: 9%; */
+            margin-left: 1%;
+            background: rgb(245, 249, 250);
+            padding-right: 0!important;
+            padding-left: 0!important;
+
+            }
+
+            .chatt{
+                background-color: #00b6f0;
+               display: block;
+                border-top-left-radius: 30px;
+                border-top-right-radius: 30px;
+                text-align: center;
+                height: 3rem;
+                color: white;
+                padding-top: 10px;
+            }
+
+        @media only screen and (max-width: 768px) {
+            #fb-feed {
+                display: none;
+            }
+            .menu > .wrapper {
+                margin: 1% 15%!important;
+            }
+            .menu__link {
+                font-size: 32px!important;
+            }
+            .header__share__title {
+                font-size: 32px!important;
+                padding-top: 18px!important;
+            }
+            .header__share__title a {
+                font-size: 28px!important;
+            }
+        }
+
+            @media only screen and (max-width: 816px) {
+
+                .chat {
+                    height: 30rem !important;
+                    width: 80%!important;
+                    margin: auto !important;
+                }
+                #borderLeft{
+
+                    top: 10%!important;
+                    bottom: 10%!important;
+                }
+                #borderRight{
+                    top: 10%!important;
+                    bottom: 10%!important;
+                }
+            }
+            @media only screen and (min-width: 816px){
+                .chat{
+                    height: auto !important;
+                }
+            }
+            @media only screen and (min-width: 1267px){
+                .chat{
+                    height: auto !important;
+                }
+                #messages{
+                    margin-bottom: 10%;
+                }
+            }
+            @media only screen and (min-width: 2000px){
+                .chat{
+                    height: auto !important;
+                }
+            }
+
+            @media (min-width: 768px) {
+                .col-md-5 {
+                    max-width: 24.666667%!important;
+                }
+            }
+
+        @media (max-width: 930px) {
+            #fb-feed {
+                width: 250px;
+            }
+        }
+
+            .chat::-webkit-scrollbar {
+               width: 0;
+            }
+            .carousel{
+                margin: 4rem !important;
+                margin-top: 8rem !important;
+
+            }
+
+            .carousel-control-prev , .carousel-control-next{
+                max-height: 70%;
+                top: 15% !important;
+            }
+
+            .white-box{
+                box-sizing: border-box;
+                padding: 10px;
+                background-color: rgb(0, 182, 240);
+                position: relative;
+                z-index: 1;
+            }
+
+
+
+            .otsikko{
+                text-align: center;
+                font-size: 3rem;
+            }
+            .kuva{
+               height: 180px;
+
+            }
+
+            .menu {
+                background: none;
+                padding-bottom: 24px;
+                padding-top: 24px;
+                margin-top: -150px;
+                z-index: 2;
+                position: sticky;
+            }
+            .wrapper {
+                margin: 1% 23%;
+                max-width: 90%;
+            }
+            .menu__items:before{
+                content: "";
+                display: table;
+            }
+            .menu__item{
+                display: inline-block;
+
+            }
+            .menu__items {
+                text-align: center;
+            }
+            .menu__link {
+                color: white;
+                font-size: 21px;
+                padding: 0.3rem;
+                font-weight: 300;
+                line-height: 26px;
+            }
+        .menu__link:hover {
+            text-decoration: none;
+        }
+            .fa-paper-plane{
+                color: white;
+            }
+            .row{
+                margin: 0!important;
+            }
+
+            .col-xs-6{
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .col-md-6 {
+                padding-left: 7px !important;
+                padding-right: 0px!important;
+            }
+            #borderLeft{
+                border-left: 2px solid #00b6f0;
+                position: absolute;
+                top: 7%;
+                bottom: 7%;
+                border-bottom: hidden;
+            }
+            #borderRight{
+                border-left: 2px solid #00b6f0;
+                position: absolute;
+                top: 7%;
+                bottom: 7%;
+                right: 0;
+                border-bottom: hidden;
+
+            }
+            .ohjelma{
+                height: 120vh !important;
+            }
+
+        header {
+            position: relative;
+            background-color: black;
+            height: 100vh;
+            min-height: 25rem;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        header video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            -ms-transform: translateX(-50%) translateY(-50%);
+            -moz-transform: translateX(-50%) translateY(-50%);
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        header .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        /*
+
+        @media (pointer: coarse) and (hover: none) {
+            header {
+                background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+            }
+            header video {
+                display: none;
+            }
+        } */
+
+        .header__share__title {
+            text-align: center;
+            left: 0;
+            right: 0;
+            position: absolute;
+            color: white;
+            font: 100%/1.4 "Helvetica Neue", sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            padding-top: 25px;
+        }
+
+        .header__share__title a {
+            color: white!important;
+            font-size: 23px;
+        }
+
+</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Wowza player test</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="simple-grid.css">
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+
+    <script type="text/javascript" src="//player.wowza.com/player/latest/wowzaplayer.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v4.0"></script>
+
+<!--
+<div class="white-box">
+
+    <div class=" otsikko">
+        <img class="kuva" src="https://flockler.com/files/sites/756/parhaassaseurassa3.svg">
+    </div>
+</div>
+
+
+
+<nav class="menu">
+    <div class="wrapper">
+
+        <ul class="menu__items">
+
+            <li class="menu__item menu__item--home">
+                <a class="menu__link" href="https://espooliikkuu.fi">
+                    <i class="icon-home"></i>
+                    <span>#espooliikkuu</span>
+                </a>      </li>
+            <li class="menu__item menu__item--section-beactive">
+                <a class="menu__link menu__link--active" href="https://espooliikkuu.fi/beactiveespoo">#BeActive</a>
+            </li>
+            <li class="menu__item menu__item--section-kotipelit">
+                <a class="menu__link" href="https://espooliikkuu.fi/kotipelit">Kotipelit</a>
+            </li>
+            <li class="menu__item menu__item--section-maksuton-liikunta">
+                <a class="menu__link" href="https://espooliikkuu.fi/maksuton-liikunta">Maksuton liikunta</a>
+            </li>
+            <li class="menu__item menu__item--section-liikuntapaikat">
+                <a class="menu__link" href="https://espooliikkuu.fi/liikuntapaikat">Liikuntapaikat</a>
+            </li>
+            <li class="menu__item menu__item--search">
+                <a class="menu__link" href="/haku">Haku</a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+-->
+
+<header>
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+    </video>
+    <div class="container h-100">
+        <div class="d-flex h-100 text-center align-items-center">
+            <div class="w-100 text-white">
+                <img class="kuva" src="https://flockler.com/files/sites/756/parhaassaseurassa3.svg">
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<nav class="menu">
+    <div class="wrapper">
+
+        <ul class="menu__items">
+
+            <li class="menu__item menu__item--home">
+                <a class="menu__link" href="https://espooliikkuu.fi">
+                    <i class="icon-home"></i>
+                    <span>#espooliikkuu</span>
+                </a>      </li>
+            <li class="menu__item menu__item--section-beactive">
+                <a class="menu__link menu__link--active" href="https://espooliikkuu.fi/beactiveespoo">#BeActive</a>
+            </li>
+            <li class="menu__item menu__item--section-kotipelit">
+                <a class="menu__link" href="https://espooliikkuu.fi/kotipelit">Kotipelit</a>
+            </li>
+            <li class="menu__item menu__item--section-maksuton-liikunta">
+                <a class="menu__link" href="https://espooliikkuu.fi/maksuton-liikunta">Maksuton liikunta</a>
+            </li>
+            <li class="menu__item menu__item--section-liikuntapaikat">
+                <a class="menu__link" href="https://espooliikkuu.fi/liikuntapaikat">Liikuntapaikat</a>
+            </li>
+            <li class="menu__item menu__item--search">
+                <a class="menu__link" href="/haku">Haku</a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>
+
+
+
+
+    <div class="row" style="padding-bottom: 100px">
+
+
+        <div id="carouselExampleControls" class="carousel col-md-7 col-xs-12" data-ride="carousel" data-interval="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div id="playerElement1" style="width:100%; height:0; padding:0 0 56.25% 0"></div>
+                </div>
+                <div class="carousel-item">
+                    <div id="playerElement2" style="width:100%; height:0; padding:0 0 56.25% 0"></div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+            </div>
+
+        </div>
+
+            <div class="chat col-md-5 col-xs-12">
+                <div class="chatt">
+
+                    CHATTI
+
+                </div>
+                <div id="borderLeft"></div>
+                <div id="borderRight"></div>
+                <ul id="messages"></ul>
+                <form action="" class="form">
+                <input id="m" autocomplete="off" />
+
+                <button id="button">
+
+                    <i class="fas fa-paper-plane"></i>
+                    
+                </button>
+                </form>
+            </div>
+
+    </div>
+
+    <div class="ohjelma row" style="background-color: white; height: 100vh">
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-4">
+            <iframe id="fb-feed" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FEspooLiikkuu%2F&tabs=timeline&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                    height="700" style="border:none;overflow:hidden;margin: auto;position: absolute;left: 0;right: 0;padding-top: 100px"
+                    scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+        </div>
+    </div>
+
+<div class="footer">
+    <div class="row" style="height: 80px; background-color: #00b6f0">
+        <div class="col-12">
+
+            <span class="header__share__title">Jaa sivu:
+<a href="https://twitter.com/intent/tweet?text=Espoo%20liikkuu%20-%20Parhaassa%20seurassa%21&amp;url=http%3A%2F%2Fespooliikkuu.fi" target="_blank">
+<i class="fab fa-twitter"></i> <span class="screen-reader"></span>
+</a>
+<a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fespooliikkuu.fi&amp;t=Espoo%20liikkuu%20-%20Parhaassa%20seurassa%21" target="_blank">
+<i class="fab fa-facebook"></i> <span class="screen-reader"></span>
+</a>
+</span>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  $(function () {
+    var socket = io();
+    $('form').submit(function(e){
+      e.preventDefault(); // prevents page reloading
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+      let num = 0;
+      let size = 47;
+    socket.on('chat message', function(msg){
+        if( num*size > $('.chat').height()){
+            $('#messages li').first().remove();
+        }  console.log($('.chat').height());
+      $('#messages').append($('<li>').text(msg));
+         num++;
+         console.log(num*size);
+
+    });
+  });
+
+  $(document).ready(function(){
+    $('#button').prop('disabled',true);
+    $('#m').keyup(function(){
+      $('#button').prop('disabled', this.value == "" ? true : false);
+    })
+  });
+
+  WowzaPlayer.create('playerElement1',
+      {
+        "license":"PLAY1-ejrM8-zjEKd-6A4J7-9JJnM-7kju6",
+        "title":"Stream",
+        "description":"", "sourceURL":"http%3A%2F%2F195.148.104.124%3A1935%2Fmobile%2Fphone%2Fplaylist.m3u8",
+        "autoPlay":false,
+        "volume":"75",
+        "mute":false,
+        "loop":false,
+        "audioOnly":false,
+        "uiShowQuickRewind":true,
+        "uiQuickRewindSeconds":"30"
+      }
+  );
+  WowzaPlayer.create('playerElement2',
+      {
+        "license":"PLAY1-ejrM8-zjEKd-6A4J7-9JJnM-7kju6",
+        "title":"OONA",
+        "sourceURL":"http%3A%2F%2F195.148.104.124%3A1935%2Fmobile%2FoonanStream%2Fplaylist.m3u8",
+        "autoPlay":true,
+        "volume":"75",
+        "mute":true,
+        "loop":false,
+        "audioOnly":false,
+        "uiShowQuickRewind":true,
+        "uiQuickRewindSeconds":"30"
+
+      }
+
+  );
+
+</script>
+
+</body>
+</html>
